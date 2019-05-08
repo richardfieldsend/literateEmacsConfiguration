@@ -100,3 +100,22 @@ message.
 #+BEGIN_SRC emacs-lisp
   (setq inhibit-startup-message t)	; switch off splash screen.
 #+END_SRC
+
+*** Set A Nice Font.
+
+If you are going to spend a lot of time looking at text, you might as
+well make sure that it is a pleasant font to look at.
+
+#+BEGIN_SRC emacs-lisp
+  (set-face-attribute 'default nil
+  :font "Inconsolata Medium"
+  :height 85)				; height 85 slightly easier to read.
+#+END_SRC
+
+There was a long discussion on Reddit (/r/emacs) about preferred fonts
+for programming and the like. I think I like the font, but I may go
+for a larger size.
+
+TODO - track down the discussion and look at alternative recommendations.
+
+
