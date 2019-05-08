@@ -184,3 +184,55 @@ some point.
   :ensure t
   :config (load-theme 'doom-city-lights t))
 #+END_SRC
+** Version Control.
+
+*** Magit.
+
+One of the 'killer apps' of Emacs is its Git supporting plug-in
+'Magit'. It describes itself as a git porcelain (no, I don't know why
+either!).
+
+Magit is definitely a great way to manage Git repositories, and you
+can do most things from within Emacs itself. I'm still getting to
+grips with the functionality, but the effor feels worth it.
+
+*** Magit Dependencies.
+
+Before installing Magit itself, you need to take care of some
+dependencies.
+
+**** Dash
+
+#+BEGIN_SRC emacs-lisp
+  (use-package dash
+  :ensure t)
+#+END_SRC
+
+**** Magit Pop-up
+
+#+BEGIN_SRC emacs-lisp
+  (use-package magit-popup
+  :ensure t)
+#+END_SRC
+
+**** With Editor
+
+#+BEGIN_SRC emacs-lisp
+  (use-package with-editor
+  :ensure t)
+#+END_SRC
+
+**** ghub
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ghub
+  :ensure t)
+#+END_SRC
+
+**** Magit itself
+
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+  :ensure t
+  :config (global-set-key (kbd "C-x g") 'magit-status))
+#+END_SRC
