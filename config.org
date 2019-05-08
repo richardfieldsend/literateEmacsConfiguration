@@ -148,3 +148,23 @@ Cyberpunk theme - first installation from Melpa using use-package.
   (use-package cyberpunk-theme	;
   :ensure t)
 #+END_SRC
+*** Rainbow Delimiters.
+
+On its surface, this functionality can appear to be just a bit of
+prettiness, but the functionality is somewhat useful. When using a lot
+of brackets (think Clojure/Lisp) it can be tricky to keep track of the
+brackets.  Rainbow Delimiters uses a different colour for each pair of
+brackets, making it easier to see which brackets match.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-delimiters
+  :ensure t
+  :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+  :config (add-hook 'LaTeX-mode-hook 'rainbow-delimiters-mode)
+  :config (add-hook 'text-mode-hook 'rainbow-delimiters-mode)
+  :config (add-hook 'org-mode-hook 'rainbow-delimiters-mode))
+#+END_SRC
+
+TODO This function also needs to be married to the electric pairs behaviour
+so that brackets are created in pairs. 
+
