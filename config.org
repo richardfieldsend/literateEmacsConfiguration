@@ -168,3 +168,19 @@ brackets, making it easier to see which brackets match.
 TODO This function also needs to be married to the electric pairs behaviour
 so that brackets are created in pairs. 
 
+*** Doom Modeline.
+
+This is a look and feel configuration that really packs a punch and
+makes Emacs look a lot more modern than before.  Doom Modeline
+supports its own range of themes which could be experimented with at
+some point.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package all-the-icons)		; install 'all the icons' package
+  (use-package doom-modeline
+  :ensure t
+  :hook (after-init . doom-modeline-mode))
+  (use-package doom-themes
+  :ensure t
+  :config (load-theme 'doom-city-lights t))
+#+END_SRC
