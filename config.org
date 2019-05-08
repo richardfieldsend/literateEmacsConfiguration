@@ -462,3 +462,19 @@ just stores the information in the ~/.Backups/ folder.
   (setq save-place-file '"~/.Backups/places") ; put places file in ~/.Backups folder
   (save-place-mode 1)
 #+END_SRC
+*** Helm Configuration.
+
+Helm is another of those plug-ins which some people just consider
+central to the Emacs experience.  I have to admit it is growing on me,
+especially when I use it to filter down options very quickly.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package helm
+  :ensure t
+  :bind (("M-x" . helm-M-x)
+  ("M-<f5>" . helm-find-files)
+  ([f10] . helm-buffers-list)
+  ([S-f10] . helm-recentf))
+  :config (helm-mode 1)
+  :config (global-set-key (kbd "C-x C-f") 'helm-find-files))
+#+END_SRC
