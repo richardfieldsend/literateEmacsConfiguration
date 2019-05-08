@@ -12,7 +12,6 @@ TODO - How document is broken down. Initial thoughts.
 - Configuration required to get other things working.
 
 - Appearance 
-  - Remove screen furniture I don't want
     Set theme/appearance
     Set modeline theme
     Font configuration
@@ -77,6 +76,8 @@ in the code.
 Out of the box Emacs isn't ugly, it is just staid. And it uses a lot
 of screen real-estate which I can put to better use. 
 
+*** Reclaiming Screen Real-Estate.
+
 Start by removing the unneccesary menu bar and tool bar from the top
 of the screen and the scroll bar on the right hand side. Once that is
 done I'll know the initialisation is working and I can commit the
@@ -88,4 +89,14 @@ first configuration.
   (blink-cursor-mode 0)			; Stop cursor blinking
   (scroll-bar-mode 0)			; Don't need the scrollbar
   (display-time-mode 1)			; Do put time in mode line.
+#+END_SRC
+
+*** Switch Off the Start-Up Message.
+
+I know that I'm using Emacs, I just started the program, so I don't
+need to be reminded of that fact. This code switches off the start-up
+message.
+
+#+BEGIN_SRC emacs-lisp
+  (setq inhibit-startup-message t)	; switch off splash screen.
 #+END_SRC
