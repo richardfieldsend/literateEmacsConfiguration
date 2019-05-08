@@ -229,10 +229,32 @@ dependencies.
   :ensure t)
 #+END_SRC
 
-**** Magit itself
+
+*** Magit itself
+
+After all that, I can then get around to installing Magit itself. The
+installation command is simple, but the configuration command binds
+C-x g to 'magit status' which is the equivalent of git status. This
+shows which files are unstaged, staged or untracked.
+
+A lot of the commands in Magit are two steps. To view the log hit l
+and then follow up appropriately. Hitting l again will give the log of
+your currently checked out branch. Hitting b will display all the
+branches. 
 
 #+BEGIN_SRC emacs-lisp
   (use-package magit
   :ensure t
   :config (global-set-key (kbd "C-x g") 'magit-status))
+#+END_SRC
+
+*** Magit Documentation.
+
+Magit is complex, so documentation needs to be at hand. 
+
+#+BEGIN_SRC emacs-lisp
+  (with-eval-after-load 'info
+  (info-initialize)
+  (add-to-list 'Info-directory-list
+  "~/.emacs.d/elpa/magit-2.90.1/dir/"))
 #+END_SRC
