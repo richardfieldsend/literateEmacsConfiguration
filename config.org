@@ -320,3 +320,98 @@ https://www.emacswiki.org/emacs/DeletingWhitespace
 #+BEGIN_SRC emacs-lisp
   (add-hook 'before-save-hook 'delete-trailing-whitespace)
 #+END_SRC
+
+*** Answering yes/no Questions with Y/N.
+
+Honestly, this is the 21st Century, who has time to type yes/no when
+y/n will do the job? This is especially obvious when you do things
+like 'kill-some-buffers' with the intention of closing a load of
+windows one after the other. Having to type yes/no in that process
+defeats the whole process.
+
+More information on the wiki at:
+
+https://www.emacswiki.org/emacs/YesOrNoP
+
+#+BEGIN_SRC emacs-lisp
+  (fset 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+*** Word Wrapping.
+
+By default Emacs doesn't wrap the text entered.  This is obviously
+nonsense in every circumstance, so this code block activates work
+wrapping.
+
+Information on word wrapping:
+
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Auto-Fill.html
+
+Instructions on activating word wrapping (auto-fill-mode) here:
+
+https://www.gnu.org/software/emacs/manual/html_node/efaq/Turning-on-auto_002dfill-by-defau│lt.html
+
+It is worth noting that the word wrap happens when the line length
+reaches a certain point. After that Emacs won't automatically try and
+reflow the text a second time (cf. Word and other WYSIWYG editors).
+As this is the case there are a couple of handy commands to refill
+text and deal with the issue. These are described here:
+
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Fill-Commands.html#Fill-Commands
+
+Most useful:
+
+- M-q : fill the current paragraph. Note that a paragraph is defined
+  as having a blank line between it and its neighbours. If there is no
+  blank line then the paragraphs are treated as one and will be melded
+  together.
+
+- C-u 2 M-q : Fill the paragraph but justify both the right and left
+  edges, not just the left hand one.
+
+An example of the difference:
+
+This is some text which I am going to format with a ragged right hand
+edge.  The content of the paragraph really doesn't matter, the point
+is to have a few lines of random text which we can justify as
+required.
+
+This is  some text which  I am going to  format with a  straight right
+hand edge.   The content of  the paragraph really doesn't  matter, the
+point is to  have a few lines  of random text which we  can justify as
+required.
+
+The problem with the second block is the extra spaces introduced to
+create the straight right edge. In proper typesetting the extra space
+can be spread along the length of the line, but in a simple fixed
+width text the gaps are going to be obvious.
+
+Still, quite cool functionality.
+
+The code block below activates the word wrapping (auto-fill in Emacs
+speak), for specific modes. I have added entries for the following
+modes:
+
+- text
+
+- LaTeX
+
+- latex
+
+- Org-mode
+
+- Emacs Lisp
+
+- Fundamental
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'text-mode-hook 'auto-fill-mode)		; word
+  (add-hook 'LaTeX-mode-hook 'auto-fill-mode)		; wrapping
+  (add-hook 'latex-mode-hook 'auto-fill-mode)		; in these
+  (add-hook 'org-mode-hook 'auto-fill-mode)		; various
+  (add-hook 'emacs-lisp-mode-hook 'auto-fill-mode)	; modes
+  (add-hook 'fundamental-mode-hook 'auto-fill-mode)		;
+  (add-hook 'prog-mode-hook 'auto-fill-mode)
+#+END_SRC
+
+I don't think I will need to set a default mode now as all the
+important ones are covered.
