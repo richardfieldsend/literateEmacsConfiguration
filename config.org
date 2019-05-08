@@ -186,7 +186,7 @@ some point.
 #+END_SRC
 ** Version Control.
 
-*** Magit.
+*** Magit - Git Porcelain for Emacs.
 
 One of the 'killer apps' of Emacs is its Git supporting plug-in
 'Magit'. It describes itself as a git porcelain (no, I don't know why
@@ -229,7 +229,6 @@ dependencies.
   :ensure t)
 #+END_SRC
 
-
 *** Magit itself
 
 After all that, I can then get around to installing Magit itself. The
@@ -258,3 +257,45 @@ Magit is complex, so documentation needs to be at hand.
   (add-to-list 'Info-directory-list
   "~/.emacs.d/elpa/magit-2.90.1/dir/"))
 #+END_SRC
+*** Backups
+
+By default Emacs creates a simple backup of files when editing. These
+share the same file name but with an appended tilde (~) character.
+This is okay, and, in those folders and projects which are under Git
+control actually unnecessary, but for folders that aren't under this
+level of version control it is a good idea to keep old copies of files
+at each save point. This is especially the case, given that modern
+systems tend to have lots of disc space, so keeping copies of these
+files isn't an issue.
+
+There are a number of variables which control how backups are kept and
+managed, and the naming of the files doesn't alway do a sterling job
+of indicating what they do.
+
+**** Save Uniquified Backups To Single Location.
+
+Rather than clogging up your working directory with backups this
+configuration will save the old backups to a specified folder
+elsewhere on the system.  I saw one configuration where the backup
+folder is actually hidden (in the usual Unix manner, by starting with
+a full stop). That way it doesn't even show up on many listings...
+
+#+BEGIN_SRC emacs-lisp
+  (setq backup-directory-alist '(("." . "~/.Backups/"))) ; hidden backup folder
+  (setq delete-old-versions t)				    ; delete old versions silently
+  (setq kept-new-versions 6)				    ; no. of new versions to keep
+  (setq kept-old-versions 2)				    ; no. of old versions to keep.
+  (setq version-control t)				    ; create numbered backups
+  (setq vc-make-backup-files t)				    ; backup even version controlled files.
+  (setq auto-save-file-name-transforms '((".*" "~/.Backups/" t))) ; uniquify saved names
+#+END_SRC
+
+This code block does the following:
+
+- Sets the location for backups to be saved to (now ~/.Backups/)
+- Sets the system to remove old versions (need to set upper and lower limits)
+- Backup files even if they are under version control
+- Process the file names that are used for backup so they are
+  unique. The actual process is to take the full path of the file and
+  convert all forward slashes into exclamation marks. The fact that
+  the path is, by definition unique means the backups will be as well.
