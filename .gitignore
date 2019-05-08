@@ -9,3 +9,6 @@
 
 # Undo-tree save-files
 *.~undo-tree
+
+# My additions to the file for my Emacs configuration.
+config.el
