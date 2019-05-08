@@ -27,6 +27,49 @@ TODO - How document is broken down. Initial thoughts.
     LaTeX
     Spell checking
     Text linting
+
+
+** Package Management.
+
+Over the years I have been using Emacs I have had to deal with various
+approaches to the issue of plug-ins and packages.  For a long time it
+seemed you had to download the code and unpack it somewhere
+appropriate, then link that location in the configuration file,
+compile the code etc. And while it worked almost all the time, it was
+often messy, and if there were dependencies they had to be resolved
+manually. 
+
+When I decided to start running the cutting edge Emacs versions (self
+compiled) I decided that I should run the latest versions of the
+packages as well and started pulling everything from their various Git
+repositories. This worked quite well, and I could run a simple bash
+process to update the packages as required, essentially walking the
+folders and running 'git pull' for each package, and then recompiling
+as required. It worked, but it was unneccesarily fiddly!
+
+Then, along came the package repositories. These online stores provide
+regularly updated lists of curated packages. The first block of code
+below plumbs in the 'Melpa' repository. The packages may not be quite
+as up to date as the Git repositories (though they are close) but
+updating them is much simpler, involving running
+'packages-list-packages', loading the package list, hitting u (update)
+which will identify the packages for which there are updates, and the
+x (eXecute) to update the packages that have an update available. 
+
+The second innovation was the 'use-package' plug-in. This allows
+automatic installation of packages by giving '(use-package packname)'
+in the code.
+
+#+BEGIN_SRC emacs-lisp
+  (require 'package)		
+  (add-to-list 'package-archives
+  '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+  (package-initialize)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(require 'use-package)
+#+END_SRC
     
 
 ** Appearance.
