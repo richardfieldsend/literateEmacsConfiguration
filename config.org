@@ -118,4 +118,16 @@ for a larger size.
 
 TODO - track down the discussion and look at alternative recommendations.
 
+*** Highlight the Current Line.
 
+To help guide the eye when writing Emacs supports highlighting of the
+current line (the line where the cursor is).
+
+#+BEGIN_SRC emacs-lisp
+  (global-hl-line-mode 1)			; highlight current line.
+#+END_SRC
+
+This highlighting is reliant on the colour scheme being used within
+Emacs, so isn't always as useful as it is in this default setup where
+the highlighted line has a green background against the white of the
+rest of the screen.
