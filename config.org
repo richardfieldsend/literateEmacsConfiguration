@@ -131,3 +131,14 @@ This highlighting is reliant on the colour scheme being used within
 Emacs, so isn't always as useful as it is in this default setup where
 the highlighted line has a green background against the white of the
 rest of the screen.
+*** Line Numbering.
+
+As files get longer, being able to refer to a location by its line
+number becomes more desirable.  This is especially the case when I
+start dabbling in programming as it will help locate errors which I
+will, inevitably make.
+
+#+BEGIN_SRC emacs-lisp
+  (global-linum-mode t)
+#+END_SRC
+
