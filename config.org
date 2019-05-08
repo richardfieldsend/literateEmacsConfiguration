@@ -415,3 +415,50 @@ modes:
 
 I don't think I will need to set a default mode now as all the
 important ones are covered.
+
+*** Recent Files.
+
+A standard part of many programs, and operating systems, is to provide
+quick access to files which have been opened recently. Emacs supports
+this functionality via 'recentf'.
+
+To view the list of files available having turned off the menu bar,
+the command is:
+
+M-x recentf-open-files
+
+The code block provides a shortcut for this function so you can use:
+
+C-x C-r
+
+No-one is going to miss the original use of this shortcut which is to
+open a file in read-only mode!
+
+The ten most recent files can be selected simply by entering the
+relevant digit (1-0). Other entries can be selected by highlighting
+the required file and hitting return.
+
+#+BEGIN_SRC emacs-lisp
+  (require 'recentf)			; Ensure recentf is loaded
+  (setq recentf-save-file '"~/.Backups/recentf") ; put recentf in ~/.Backups folder
+  (recentf-mode 1)			; and activated
+  (setq recentf-max-menu-items 25)	; Define how many recent entries to store
+  (global-set-key "\C-x\ \C-r" 'recentf-open-files) ; map to key binding.
+  (run-at-time nil (* 5 60) 'recentf-save-list)	  ; save list of recentf files every 5 minutes
+#+END_SRC
+
+The output when I hit C-x C-r as of writing this is:
+
+  [1] /home/richard/.emacs.d/config.org
+  [2] /home/richard/.emacs.d/recentf
+*** Saving Your Place.
+
+As files get longer it is useful to be able to open a file and return
+to the same location as you were at when you closed the file or
+shutdown the program.  This doesn't require any special commands, it
+just stores the information in the ~/.Backups/ folder.
+
+#+BEGIN_SRC emacs-lisp
+  (setq save-place-file '"~/.Backups/places") ; put places file in ~/.Backups folder
+  (save-place-mode 1)
+#+END_SRC
