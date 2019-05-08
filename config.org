@@ -11,7 +11,7 @@ TODO - How document is broken down. Initial thoughts.
 
 - Configuration required to get other things working.
 
-- Appearance 
+- Appearance
     Set theme/appearance
     Set modeline theme
     Font configuration
@@ -20,7 +20,7 @@ TODO - How document is broken down. Initial thoughts.
   - C/C++
     Python
     Clojure
-    
+
 - Text editing
   - HTML
     LaTeX
@@ -35,7 +35,7 @@ seemed you had to download the code and unpack it somewhere
 appropriate, then link that location in the configuration file,
 compile the code etc. And while it worked almost all the time, it was
 often messy, and if there were dependencies they had to be resolved
-manually. 
+manually.
 
 When I decided to start running the cutting edge Emacs versions (self
 compiled) I decided that I should run the latest versions of the
@@ -52,14 +52,14 @@ as up to date as the Git repositories (though they are close) but
 updating them is much simpler, involving running
 'packages-list-packages', loading the package list, hitting u (update)
 which will identify the packages for which there are updates, and the
-x (eXecute) to update the packages that have an update available. 
+x (eXecute) to update the packages that have an update available.
 
 The second innovation was the 'use-package' plug-in. This allows
 automatic installation of packages by giving '(use-package packname)'
 in the code.
 
 #+BEGIN_SRC emacs-lisp
-  (require 'package)		
+  (require 'package)
   (add-to-list 'package-archives
   '("melpa-stable" . "https://stable.melpa.org/packages/") t)
   (package-initialize)
@@ -68,11 +68,11 @@ in the code.
 #+BEGIN_SRC emacs-lisp
 (require 'use-package)
 #+END_SRC
-    
+
 ** Appearance.
 
 Out of the box Emacs isn't ugly, it is just staid. And it uses a lot
-of screen real-estate which I can put to better use. 
+of screen real-estate which I can put to better use.
 
 *** Reclaiming Screen Real-Estate.
 
@@ -166,7 +166,7 @@ brackets, making it easier to see which brackets match.
 #+END_SRC
 
 TODO This function also needs to be married to the electric pairs behaviour
-so that brackets are created in pairs. 
+so that brackets are created in pairs.
 
 *** Doom Modeline.
 
@@ -239,7 +239,7 @@ shows which files are unstaged, staged or untracked.
 A lot of the commands in Magit are two steps. To view the log hit l
 and then follow up appropriately. Hitting l again will give the log of
 your currently checked out branch. Hitting b will display all the
-branches. 
+branches.
 
 #+BEGIN_SRC emacs-lisp
   (use-package magit
@@ -249,7 +249,7 @@ branches.
 
 *** Magit Documentation.
 
-Magit is complex, so documentation needs to be at hand. 
+Magit is complex, so documentation needs to be at hand.
 
 #+BEGIN_SRC emacs-lisp
   (with-eval-after-load 'info
@@ -299,3 +299,24 @@ This code block does the following:
   unique. The actual process is to take the full path of the file and
   convert all forward slashes into exclamation marks. The fact that
   the path is, by definition unique means the backups will be as well.
+** General Behaviour.
+
+These settings are the sort of thing that has a general effect on all
+areas of using the editor.  Things like word wrapping and being able
+to respond to queries using y/n rather than yes/no. These are not
+specific to a particular activity or mode.
+
+*** White Space Trimmming.
+
+When a file is saved, this function is called and trims any excess
+white space at the end of the file.  There are more aggressive
+versions of this function which will strip out white space throughout
+the document but I don't need that sort of functionality.
+
+Wike article on the subject:
+
+https://www.emacswiki.org/emacs/DeletingWhitespace
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+#+END_SRC
