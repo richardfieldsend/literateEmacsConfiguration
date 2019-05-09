@@ -1,5 +1,5 @@
 * Literate Paradigm Configuration File for Emacs - May 2019.
-#+Time-stamp: <2019-05-09 13:45:14 richard>
+#+Time-stamp: <2019-05-09 14:20:19 richard>
 
 ** Introduction.
 
@@ -185,6 +185,45 @@ some point.
   :ensure t
   :config (load-theme 'doom-city-lights t))
 #+END_SRC
+*** Display text in scratch buffer at start-up.
+
+I have switched off the standard Emacs 'splash screen' which is
+normally displayed when you start Emacs. However, I don't want to just
+be left with the dull generic text.
+
+Instead, I want to be greeted by text specific to the machine I am
+using Emacs on.  The machines are:
+
+- Home laptop - ziggy-latitude
+- Psychology desktop - psychol-ford
+- Plant Sci desktop - plantsci-cowin01
+
+Emacs can run code on the basis of the system name using a look-up on
+the variable 'system-name'. According to the variable description
+system-name is defined in 'C source code', but this variable is
+obsolete in Emacs after version 25.1. I will experiment and see in
+(system-name) works in the same way.
+
+#+BEGIN_SRC emacs-lisp
+  ;; ziggy-latitude - my home laptop (an old dell latitude running Mint Linux)
+  (if (string=(system-name) "ziggy-latitude")
+  (setq initial-scratch-message
+  "I use Emacs, which might be thought of as a thermonuclear word processor.\n\nNeal Stephenson - \n\tIn The Beginning... Was the Command Line"))
+  ;; psychol-ford - Psychology desktop
+  (if (string=(system-name) "psychol-ford")
+  (setq initial-scratch-message
+  "'Space,' it says, 'is big. Really big. You just wont't believe how vastly, hugely, mindbogglingly big it is.
+  \nI mean, you may think it's a long way down the road to the chemist, but that's just peanuts to space.'\n\nHitch Hiker's Guide To The Galaxy\n\tDouglas Adams."))
+  ;; plantsci-cowin01 - Plant Sciences desktop
+  (if (string=(system-name) "plantsci-cowin01")
+  (setq initial-scratch-message
+  "The most exciting phrase to hear in science, the one that heralds the most discoveries is\nnot 'Eureka!' (I have found it!), but 'That's funny...'\n\n Isaac Asimov"))
+  ;; ziggypi - my home Raspberry Pi - needs testing.
+  (if (string=(system-name) "ziggypi")
+  (setq initial-scratch-message
+  "I see you are logged into a Raspberry Pi. Welcome."))
+  #+END_SRC
+
 ** Version Control.
 
 *** Magit - Git Porcelain for Emacs.
