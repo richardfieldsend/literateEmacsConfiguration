@@ -1,7 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; init.el file
 ;;
-;; Time-stamp: < >
+;; Time-stamp: <2019-05-09 20:17:23 rf343>
 ;;
 ;; This file is used in starting up Emacs. In my setup this is the
 ;; first file read, though I know that there is now a file which comes
@@ -20,7 +20,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (rainbow-delimiters use-package cyberpunk-theme))))
+ '(package-selected-packages '(rainbow-delimiters use-package cyberpunk-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
