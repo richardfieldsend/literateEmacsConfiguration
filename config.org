@@ -1,5 +1,5 @@
 * Literate Paradigm Configuration File for Emacs - May 2019.
-#+Time-stamp: <2019-05-09 17:26:09 richard>
+#+Time-stamp: <2019-05-09 17:33:33 richard>
 
 ** Introduction.
 
@@ -518,6 +518,19 @@ especially when I use it to filter down options very quickly.
   :config (helm-mode 1)
   :config (global-set-key (kbd "C-x C-f") 'helm-find-files))
 #+END_SRC
+*** Setting Default Mode.
+
+In almost every mode I now have auto-fill activated. This works in Org
+mode etc, no problem. But when I am editing emails in Emacs (as I have
+configured to do with Evolution) the buffer that is used is
+'Fundamental' mode and this doesn't do word wrapping.
+
+So I am setting the default mode appropriately.
+
+#+BEGIN_SRC emacs-lisp
+  (setq-default major-mode 'text-mode)
+#+END_SRC
+
 *** Time Stamping Files.
 
 Emacs provides a simple function to complete a timestamp within
