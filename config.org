@@ -1,5 +1,5 @@
 * Literate Paradigm Configuration File for Emacs - May 2019.
-#+Time-stamp: <2019-05-09 14:20:19 richard>
+#+Time-stamp: <2019-05-09 17:26:09 richard>
 
 ** Introduction.
 
@@ -544,3 +544,12 @@ will be inserted.
 Note on 'time-stamp-pattern: This is a variable which defines the
 search pattern for what the time-stamp string is. Leave it unchanged
 otherwise it may affect the time-stamp updating.
+*** Visual Bell.
+
+By default Emacs will beep if you do something that doesn't make
+sense. It isn't particularly intrusive, but I do want to make it a
+visual notification rather than an audio one.
+
+#+BEGIN_SRC emacs-lisp
+  (setq visible-bell t)
+#+END_SRC
