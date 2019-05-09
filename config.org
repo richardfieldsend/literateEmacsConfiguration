@@ -1,4 +1,5 @@
 * Literate Paradigm Configuration File for Emacs - May 2019.
+#+Time-stamp: <2019-05-09 13:45:14 richard>
 
 ** Introduction.
 
@@ -478,3 +479,29 @@ especially when I use it to filter down options very quickly.
   :config (helm-mode 1)
   :config (global-set-key (kbd "C-x C-f") 'helm-find-files))
 #+END_SRC
+*** Time Stamping Files.
+
+Emacs provides a simple function to complete a timestamp within
+documents. This function relies on the string:
+
+Time-stamp: " "
+
+or
+
+Time-stamp: < >
+
+being present in the first eight lines of the document. Note that
+there is a space between the speechmarks or angle brackets.
+
+The following code block calls the time-stamp function whenever a file
+is saved, and if the text is present the time and user information
+will be inserted.
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'before-save-hook 'time-stamp) ; run time-stamp when file is saved.
+  (setq time-stamp-pattern nil)		 ; See the note below.
+#+END_SRC
+
+Note on 'time-stamp-pattern: This is a variable which defines the
+search pattern for what the time-stamp string is. Leave it unchanged
+otherwise it may affect the time-stamp updating.
