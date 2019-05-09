@@ -1,7 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; init.el file
 ;;
-;; Time-stamp: <2019-05-09 20:17:23 rf343>
+;; Time-stamp: <2019-05-10 00:32:24 rf343>
 ;;
 ;; This file is used in starting up Emacs. In my setup this is the
 ;; first file read, though I know that there is now a file which comes

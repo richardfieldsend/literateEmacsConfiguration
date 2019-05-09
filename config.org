@@ -1,5 +1,5 @@
 * Literate Paradigm Configuration File for Emacs - May 2019.
-#+Time-stamp: <2019-05-09 17:33:33 richard>
+#+Time-stamp: <2019-05-10 00:37:10 rf343>
 
 ** Introduction.
 
@@ -565,4 +565,41 @@ visual notification rather than an audio one.
 
 #+BEGIN_SRC emacs-lisp
   (setq visible-bell t)
+#+END_SRC
+*** Abbreviations - Saving on Typing.
+
+**** TODO Add description text for using abbreviation mode.
+
+**** Automatically Expanding Abbreviations.
+
+#+BEGIN_SRC emacs-lisp
+  (setq-default abbrev-mode t)		; turn on abbreviation mode.
+  (setq abbrev-file-name "~/.emacs.d/abbrev_defs") ; where the abbreviations are stored.
+#+END_SRC
+
+Automatic abbreviations expand when you hit the next white space
+character.
+
+To create entries in the abbreviations file enter the abbreviation
+itself and then hit either:
+
+- C-x a i g - add inverse global abbreviation
+
+- C-x a i l - add inverse local abbreviation
+
+**** Dynamically Expanding Abbreviations.
+
+**** TODO add prose  around using dynamic abbreviations.
+** Org-Mode Functionality.
+
+*** TODO Prose about Org-mode
+
+*** Org-Mode Fancy Bullets.
+
+**** TODO Prose about bullets.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org-bullets
+  :ensure t
+  :hook (org-mode . (lambda () (org-bullets-mode 1))))
 #+END_SRC
