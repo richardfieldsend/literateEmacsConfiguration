@@ -1,5 +1,5 @@
 * Literate Paradigm Configuration File for Emacs - May 2019.
-#+Time-stamp: <2019-05-10 11:52:23 richard>
+#+Time-stamp: <2019-05-10 13:27:48 richard>
 
 ** Introduction.
 
@@ -183,7 +183,7 @@ some point.
     :hook (after-init . doom-modeline-mode))
   (use-package doom-themes
     :ensure t
-    :config (load-theme 'doom-city-lights t))
+    :config (load-theme 'doom-dracula t))
 #+END_SRC
 *** Display text in scratch buffer at start-up.
 
@@ -602,6 +602,44 @@ itself and then hit either:
 *** TODO Prose about Org-mode
 
 *** TODO Investigate what else Org Mode can do.
+*** Org-Mode Configuration for Babel/Code Block Support.
+Set some Org-Mode functionality up so that code blocks work better.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org			; load org mode
+    :ensure t
+    :config (setq org-src-tab-acts-natively t)
+    :config (org-babel-do-load-languages
+	     'org-babel-load-languages
+	     '(
+	       (python . t)
+	       (C . t)
+	       (shell . t)
+	       (latex . t)
+	       ))
+    ;; fontify the code in Org Mode Code Blocks
+    :config (setq org-src-fontify-natively t)
+    ;; Don't check before running the code.
+    :config (setq org-confirm-babel-evaluate nil))
+#+END_SRC
+
+This code block sets up the fact that you can write your code in
+various languages and have Org run them as you would expect. Testing
+on how this works is required, but a quick Python 'Hello World'
+example functions.
+
+For Python there is a page of examples here:
+https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-python.html#orgd68ccfd
+
+#+BEGIN_SRC python :results output
+  print "Hello World!"
+#+END_SRC
+
+#+RESULTS:
+: Hello World!
+
+To run the code block place the cursor in the block and hit C-c C-c.
+
 *** Org-Mode Fancy Bullets.
 
 **** TODO Prose about bullets.
@@ -610,18 +648,6 @@ itself and then hit either:
   (use-package org-bullets
     :ensure t
     :hook (org-mode . (lambda () (org-bullets-mode 1))))
-#+END_SRC
-*** Code Block Indentation Function.
-
-While it is nice to be able to embed the code in these little blocks
-and then surround them with some useful prose, without this code block
-the code formatting isn't great. This hasn't been an issue so far, as
-Lisp isn't particularly sensitive to things like code layout and
-indentation, but it could have become more problematic when dealing
-with other languages, especially Python.
-
-#+BEGIN_SRC emacs-lisp
-  (setq org-src-tab-acts-natively t)
 #+END_SRC
 ** Writing Functionality.
 
@@ -675,3 +701,30 @@ fill-mode configured elsewhere.
   (use-package writeroom-mode
     :ensure t)
 #+END_SRC
+*** Spell Checking.
+While writing text even the best typist and writer needs someone
+looking over their shoulder and checking their spelling.  Obviously
+this needs to be done using proper English rather than American
+English.  This setting takes care of that, configuring the ispell
+plug-in and the use of the British dictionary.
+
+#+BEGIN_SRC emacs-lisp
+  (require 'ispell)
+  (setq ispell-dictionary "british")
+#+END_SRC
+
+It is, of course, possible to do the spell checking manually, but to
+be truly useful you need to do realtime spelling.  This means the use
+of flyspell-mode which can be enabled for particular modes.
+
+#+BEGIN_SRC emacs-lisp
+  ;; on the fly spell checking for specific modes:-
+  (add-hook 'text-mode-hook 'flyspell-mode)		; text mode
+  (add-hook 'prog-mode-hook 'flyspell-mode)		; programming modes
+  (add-hook 'LaTeX-mode-hook 'flyspell-mode)		; LaTex (AucTeX) mode
+  (add-hook 'latex-mode-hook 'flyspell-mode)		; latex mode
+  (add-hook 'org-mode-hook 'flyspell-mode)		; Org Mode
+#+END_SRC
+
+Testing of the spell checking functionality shows that it is working
+as expected.
