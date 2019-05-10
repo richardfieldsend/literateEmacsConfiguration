@@ -1,5 +1,5 @@
 * Literate Paradigm Configuration File for Emacs - May 2019.
-#+Time-stamp: <2019-05-10 10:07:10 richard>
+#+Time-stamp: <2019-05-10 11:36:47 richard>
 
 ** Introduction.
 
@@ -623,3 +623,30 @@ with other languages, especially Python.
 #+BEGIN_SRC emacs-lisp
   (setq org-src-tab-acts-natively t)
 #+END_SRC
+** Writing Functionality.
+
+Using a text editor can involve many different activities, from
+writing prose, to coding and then editing whatever has been
+entered. This section includes a number of functions which I think
+enhance the process of writing text.
+*** TODO Add more prose...
+*** Minimap Mode.
+Minimap mode is a tool which provides a 10,000 foot overview of a
+buffer's structure in a window to the side of the main editing window
+(by default this is to the left hand side). The minimap isn't meant to
+be readable in most cases, but should give the user an idea of
+whereabouts in the document you are, and the overall structure of the
+file.
+
+Code block installs and loads Minimap Mode and then sets the supported
+modes to include prog-mode (the default), html-mode, org-mode,
+text-mode and LaTeX modes.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package minimap
+    :ensure t
+    :config (setq minimap-major-modes '(prog-mode html-mode org-mode text-mode LaTeX-mode latex-mode)))
+  (minimap-mode 1)
+#+END_SRC
+
+**** TODO check if minimap font can be made a little bit more readable.
