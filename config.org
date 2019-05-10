@@ -1,5 +1,5 @@
 * Literate Paradigm Configuration File for Emacs - May 2019.
-#+Time-stamp: <2019-05-10 17:03:31 richard>
+#+Time-stamp: <2019-05-10 23:07:05 rf343>
 
 ** Introduction.
 
@@ -783,6 +783,19 @@ originalfilename.trash.originalfileextension
 
 Content can then be retrieved with ease either from the end of the
 file or from the external file.
+*** Org-Journal Mode.
+Rather than installing the git based journal there is an org-based
+journal option to try.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org-journal
+  :ensure t
+  )
+#+END_SRC
+
+**** TODO information about the org-journal mode.
+**** TODO change the target folder for the journal.
+
 ** Mark Up Editing.
 
 The idea of mark up is an ancient one going back to the early printing
@@ -817,3 +830,18 @@ those interested in creating documents of beauty.
     (use-package htmlize
       :ensure t)
 #+END_SRC
+*** LaTeX Editing.
+
+**** TODO setup LaTeX/AucTeX stuff.
+**** TODO setup RefTeX
+**** TODO setup BibTeX
+**** TODO word count in LaTeX documents
+** Programming Modes.
+*** Clojure Mode.
+*** C/C++ Mode.
+*** Python Mode.
+** Experimental Code.
+
+Code here is for testing before moving into other locations.
+
+** Stuff To Investigate.
