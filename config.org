@@ -1,5 +1,5 @@
 * Literate Paradigm Configuration File for Emacs - May 2019.
-#+Time-stamp: <2019-05-10 13:27:48 richard>
+#+Time-stamp: <2019-05-10 14:13:46 richard>
 
 ** Introduction.
 
@@ -61,10 +61,15 @@ in the code.
 
 #+BEGIN_SRC emacs-lisp
   (require 'package)
-  (add-to-list 'package-archives
-	       '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+  (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
   (package-initialize)
 #+END_SRC
+
+Modified loaded packages on 10th May 2019. Melpa Stable appeared not
+to contain Palimpsest, so I have moved to non-stable Melpa.
+
+*** TODO Comment on moving from stable to 'normal' Melpa repository and how a package upgrade request then required 26 packages updated.
 
 #+BEGIN_SRC emacs-lisp
   (require 'use-package)
@@ -728,3 +733,53 @@ of flyspell-mode which can be enabled for particular modes.
 
 Testing of the spell checking functionality shows that it is working
 as expected.
+
+*** Palimpsest Support.
+
+The dictionary definition from WordNet (using dict palimpsest) is:
+
+palimpsest:
+n 1: a manuscript (usually written on papyrus or parchment) on which
+more than one text has been written with the earlier writing
+incompletely erased and still visible.
+
+Palimpsest functionality in Emacs provides a function to take a
+selection of text and either move it to one end of the document
+(usually the end, though the top is a configurable option) or to paste
+it into an external document with a suitable name related to the
+parent document.  This way the removed text continues to be ready if
+required later.
+
+Palimpsest Configuration:
+
+#+BEGIN_SRC emacs-lisp
+  (use-package palimpsest
+    :ensure t
+    :config (add-hook 'text-mode-hook 'palimpsest-mode)
+    :config (add-hook 'LaTeX-mode-hook 'palimpsest-mode)
+    :config (add-hook 'latex-mode-hook 'palimpsest-mode)
+    :config (add-hook 'org-mode-hook 'palimpsest-mode)
+    :config (add-hook 'prog-mode-hook 'palimpsest-mode))
+#+END_SRC
+
+**** Instructions For Palimpsest Mode.
+
+- M-x palimpsest-move-region-to-bottom
+
+- M-x palimpsest-move-region-to-top
+
+- M-x palimpsest-move-region-to-trash
+
+Keyboard shortcuts are provided for moving to the bottom and to an
+external file.
+
+- C-c C-r - Send to the end of the file.
+
+- C-c C-q - Send to the external file.
+
+The external file name is derived from:
+
+originalfilename.trash.originalfileextension
+
+Content can then be retrieved with ease either from the end of the
+file or from the external file.

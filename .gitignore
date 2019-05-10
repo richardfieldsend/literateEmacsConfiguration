@@ -13,3 +13,4 @@
 # My additions to the file for my Emacs configuration.
 config.el
 /elpa
+/transient/history.el
