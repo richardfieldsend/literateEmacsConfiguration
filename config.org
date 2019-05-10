@@ -1,5 +1,5 @@
 * Literate Paradigm Configuration File for Emacs - May 2019.
-#+Time-stamp: <2019-05-10 14:13:46 richard>
+#+Time-stamp: <2019-05-10 17:03:31 richard>
 
 ** Introduction.
 
@@ -783,3 +783,37 @@ originalfilename.trash.originalfileextension
 
 Content can then be retrieved with ease either from the end of the
 file or from the external file.
+** Mark Up Editing.
+
+The idea of mark up is an ancient one going back to the early printing
+press.  The author of a piece of text would write the words they
+wanted to publish. Then an editor would edit the words and mark them
+up with instructions on how the printer should actually print the
+text.  This could include indications of font size, location on the
+page and any other relevant information.
+
+Fast forward to recent developments. Thirty years ago newspapers were
+still made in much the same way, and the printer was a skilled
+technician, versed in spelling, reading mirror writing and handling
+the type with extreme rapidity.
+
+Then came the publishing revolution. The rise of the desktop
+publishing program and word processor. For a time the separation of
+the two processes (generating chunks of text and processing those
+words into a beautiful document) were kept separate. Styles were still
+key to the way documents were produced, the printer's arts still
+persisted.
+
+This approach to creating documents persists in markup languages like
+HTML, LaTeX and Groff. It may not be on display, but learning a bit
+about the way these things work is a net benefit for the author and
+those interested in creating documents of beauty.
+
+*** HTML Editing
+
+**** TODO documentation on html usage. Also look into alternate packages.
+
+#+BEGIN_SRC emacs-lisp
+    (use-package htmlize
+      :ensure t)
+#+END_SRC
