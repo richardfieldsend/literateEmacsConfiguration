@@ -1,5 +1,5 @@
 * Literate Paradigm Configuration File for Emacs - May 2019.
-#+Time-stamp: <2019-05-10 11:36:47 richard>
+#+Time-stamp: <2019-05-10 11:52:23 richard>
 
 ** Introduction.
 
@@ -650,3 +650,28 @@ text-mode and LaTeX modes.
 #+END_SRC
 
 **** TODO check if minimap font can be made a little bit more readable.
+*** Writeroom.
+When working on Linux there is a standalone 'distraction free' text
+editor called FocusWriter. It is a nice program with some cool
+features such as word targets and a nice look and feel. But of course
+it doesn't have Emacs key bindings and things like abbreviation
+mode. Fortunately Emacs provides its own distraction free editing
+environment - WriteRoom.
+
+**** WriteRoom Dependency.
+
+There is a dependency that needs to be satisfied before installing
+WriteRoom. This is 'Visual Fill Column' which is related to the
+fill-mode configured elsewhere.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package visual-fill-column
+    :ensure t)
+#+END_SRC
+
+**** WriteRoom Itself.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package writeroom-mode
+    :ensure t)
+#+END_SRC
