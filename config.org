@@ -1,14 +1,14 @@
 * Literate Paradigm Configuration File for Emacs - May 2019.
-#+Time-stamp: <2019-05-10 00:37:10 rf343>
+#+Time-stamp: <2019-05-10 10:07:10 richard>
 
 ** Introduction.
 
-TODO - description of what literate programming is and how it works
+*** TODO - description of what literate programming is and how it works
 with Emacs and Org-mode.
 
 ** Information About Document Structure.
 
-TODO - How document is broken down. Initial thoughts.
+*** TODO - How document is broken down. Initial thoughts.
 
 - Configuration required to get other things working.
 
@@ -62,12 +62,12 @@ in the code.
 #+BEGIN_SRC emacs-lisp
   (require 'package)
   (add-to-list 'package-archives
-  '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+	       '("melpa-stable" . "https://stable.melpa.org/packages/") t)
   (package-initialize)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(require 'use-package)
+  (require 'use-package)
 #+END_SRC
 
 ** Appearance.
@@ -107,8 +107,8 @@ well make sure that it is a pleasant font to look at.
 
 #+BEGIN_SRC emacs-lisp
   (set-face-attribute 'default nil
-  :font "Inconsolata Medium"
-  :height 85)				; height 85 slightly easier to read.
+		      :font "Inconsolata Medium"
+		      :height 85)	; height 85 slightly easier to read.
 #+END_SRC
 
 There was a long discussion on Reddit (/r/emacs) about preferred fonts
@@ -147,7 +147,7 @@ Cyberpunk theme - first installation from Melpa using use-package.
 
 #+BEGIN_SRC emacs-lisp
   (use-package cyberpunk-theme	;
-  :ensure t)
+    :ensure t)
 #+END_SRC
 *** Rainbow Delimiters.
 
@@ -159,11 +159,11 @@ brackets, making it easier to see which brackets match.
 
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-delimiters
-  :ensure t
-  :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-  :config (add-hook 'LaTeX-mode-hook 'rainbow-delimiters-mode)
-  :config (add-hook 'text-mode-hook 'rainbow-delimiters-mode)
-  :config (add-hook 'org-mode-hook 'rainbow-delimiters-mode))
+    :ensure t
+    :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+    :config (add-hook 'LaTeX-mode-hook 'rainbow-delimiters-mode)
+    :config (add-hook 'text-mode-hook 'rainbow-delimiters-mode)
+    :config (add-hook 'org-mode-hook 'rainbow-delimiters-mode))
 #+END_SRC
 
 TODO This function also needs to be married to the electric pairs behaviour
@@ -179,11 +179,11 @@ some point.
 #+BEGIN_SRC emacs-lisp
   (use-package all-the-icons)		; install 'all the icons' package
   (use-package doom-modeline
-  :ensure t
-  :hook (after-init . doom-modeline-mode))
+    :ensure t
+    :hook (after-init . doom-modeline-mode))
   (use-package doom-themes
-  :ensure t
-  :config (load-theme 'doom-city-lights t))
+    :ensure t
+    :config (load-theme 'doom-city-lights t))
 #+END_SRC
 *** Display text in scratch buffer at start-up.
 
@@ -207,26 +207,26 @@ obsolete in Emacs after version 25.1. I will experiment and see in
 #+BEGIN_SRC emacs-lisp
   ;; ziggy-latitude - my home laptop (an old dell latitude running Mint Linux)
   (if (string=(system-name) "ziggy-latitude")
-  (setq initial-scratch-message
-  "I use Emacs, which might be thought of as a thermonuclear word processor.\n\nNeal Stephenson - \n\tIn The Beginning... Was the Command Line"))
+      (setq initial-scratch-message
+	    "I use Emacs, which might be thought of as a thermonuclear word processor.\n\nNeal Stephenson - \n\tIn The Beginning... Was the Command Line"))
   ;; psychol-ford - Psychology desktop
   (if (string=(system-name) "psychol-ford")
-  (setq initial-scratch-message
-  "'Space,' it says, 'is big. Really big. You just wont't believe how vastly, hugely, mindbogglingly big it is.
+      (setq initial-scratch-message
+	    "'Space,' it says, 'is big. Really big. You just wont't believe how vastly, hugely, mindbogglingly big it is.
   \nI mean, you may think it's a long way down the road to the chemist, but that's just peanuts to space.'\n\nHitch Hiker's Guide To The Galaxy\n\tDouglas Adams."))
   ;; plantsci-cowin01 - Plant Sciences desktop
   (if (string=(system-name) "plantsci-cowin01")
-  (setq initial-scratch-message
-  "The most exciting phrase to hear in science, the one that heralds the most discoveries is\nnot 'Eureka!' (I have found it!), but 'That's funny...'\n\n Isaac Asimov"))
+      (setq initial-scratch-message
+	    "The most exciting phrase to hear in science, the one that heralds the most discoveries is\nnot 'Eureka!' (I have found it!), but 'That's funny...'\n\n Isaac Asimov"))
   ;; ziggypi - my home Raspberry Pi - needs testing.
   (if (string=(system-name) "ziggypi")
-  (setq initial-scratch-message
-  "I see you are logged into a Raspberry Pi. Welcome."))
+      (setq initial-scratch-message
+	    "I see you are logged into a Raspberry Pi. Welcome."))
   #+END_SRC
 
 ** Version Control.
 
-*** Magit - Git Porcelain for Emacs.
+*** TODO Magit - Git Porcelain for Emacs.
 
 One of the 'killer apps' of Emacs is its Git supporting plug-in
 'Magit'. It describes itself as a git porcelain (no, I don't know why
@@ -245,28 +245,28 @@ dependencies.
 
 #+BEGIN_SRC emacs-lisp
   (use-package dash
-  :ensure t)
+    :ensure t)
 #+END_SRC
 
 **** Magit Pop-up
 
 #+BEGIN_SRC emacs-lisp
   (use-package magit-popup
-  :ensure t)
+    :ensure t)
 #+END_SRC
 
 **** With Editor
 
 #+BEGIN_SRC emacs-lisp
   (use-package with-editor
-  :ensure t)
+    :ensure t)
 #+END_SRC
 
 **** ghub
 
 #+BEGIN_SRC emacs-lisp
   (use-package ghub
-  :ensure t)
+    :ensure t)
 #+END_SRC
 
 *** Magit itself
@@ -283,8 +283,8 @@ branches.
 
 #+BEGIN_SRC emacs-lisp
   (use-package magit
-  :ensure t
-  :config (global-set-key (kbd "C-x g") 'magit-status))
+    :ensure t
+    :config (global-set-key (kbd "C-x g") 'magit-status))
 #+END_SRC
 
 *** Magit Documentation.
@@ -293,10 +293,15 @@ Magit is complex, so documentation needs to be at hand.
 
 #+BEGIN_SRC emacs-lisp
   (with-eval-after-load 'info
-  (info-initialize)
-  (add-to-list 'Info-directory-list
-  "~/.emacs.d/elpa/magit-2.90.1/dir/"))
+    (info-initialize)
+    (add-to-list 'Info-directory-list
+		 "~/.emacs.d/elpa/magit-2.90.1/dir/"))
 #+END_SRC
+*** TODO Magit Other Functions Investigation
+Magit isn't limited to just managing simple version control. There are
+lots of extensions of Magit. One of the most interesting sounding
+being Magit ToDo which managed TODO in Org files. This needs
+investigation.
 *** Backups
 
 By default Emacs creates a simple backup of files when editing. These
@@ -510,14 +515,16 @@ especially when I use it to filter down options very quickly.
 
 #+BEGIN_SRC emacs-lisp
   (use-package helm
-  :ensure t
-  :bind (("M-x" . helm-M-x)
-  ("M-<f5>" . helm-find-files)
-  ([f10] . helm-buffers-list)
-  ([S-f10] . helm-recentf))
-  :config (helm-mode 1)
-  :config (global-set-key (kbd "C-x C-f") 'helm-find-files))
+    :ensure t
+    :bind (("M-x" . helm-M-x)
+	   ("M-<f5>" . helm-find-files)
+	   ([f10] . helm-buffers-list)
+	   ([S-f10] . helm-recentf))
+    :config (helm-mode 1)
+    :config (global-set-key (kbd "C-x C-f") 'helm-find-files))
 #+END_SRC
+
+*** TODO Investigate what other things Helm can do.
 *** Setting Default Mode.
 
 In almost every mode I now have auto-fill activated. This works in Org
@@ -594,12 +601,25 @@ itself and then hit either:
 
 *** TODO Prose about Org-mode
 
+*** TODO Investigate what else Org Mode can do.
 *** Org-Mode Fancy Bullets.
 
 **** TODO Prose about bullets.
 
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
-  :ensure t
-  :hook (org-mode . (lambda () (org-bullets-mode 1))))
+    :ensure t
+    :hook (org-mode . (lambda () (org-bullets-mode 1))))
+#+END_SRC
+*** Code Block Indentation Function.
+
+While it is nice to be able to embed the code in these little blocks
+and then surround them with some useful prose, without this code block
+the code formatting isn't great. This hasn't been an issue so far, as
+Lisp isn't particularly sensitive to things like code layout and
+indentation, but it could have become more problematic when dealing
+with other languages, especially Python.
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-src-tab-acts-natively t)
 #+END_SRC
