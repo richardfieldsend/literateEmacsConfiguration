@@ -14,3 +14,5 @@
 config.el
 /elpa
 /transient/history.el
+/eshell/history
+/eshell/lastdir
