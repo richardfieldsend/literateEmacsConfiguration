@@ -16,3 +16,4 @@ config.el
 /transient/history.el
 /eshell/history
 /eshell/lastdir
+speed-type
