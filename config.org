@@ -1,5 +1,5 @@
 * Literate Paradigm Configuration File for Emacs - May 2019.
-#+Time-stamp: <2019-05-10 23:07:05 rf343>
+#+Time-stamp: <2019-05-11 19:47:18 rf343>
 
 ** Introduction.
 
@@ -838,10 +838,57 @@ those interested in creating documents of beauty.
 **** TODO word count in LaTeX documents
 ** Programming Modes.
 *** Clojure Mode.
+Clojure is a dialect of Lisp which compiles to Java code which can be
+run on Java Virtual Machines. It also supports REPLs etc.  My
+experiments with this language are largely carried out in conjunction
+with the book 'Clojure for the Brave and the True', but I also have an
+O'Reilly book on the subject.
+
+The instructions for working with Emacs and Clojure largely derive
+from this web page:
+
+http://clojure-doc.org/articles/tutorials/emacs.html#manual-setup
+
+However, as I'm using use-package to carry out the installations this
+is simplified a little:
+
+#+BEGIN_SRC emacs-lisp
+  (use-package clojure-mode		; Install clojure mode
+    :ensure t)
+  (use-package cider			; install cider
+    :ensure t)
+#+END_SRC
+
+The instructions also recommends the use of Projectile in order to
+navigate and manage projects, so I will look at this in the future.
+
+**** TODO Projectile investigation.
+**** TODO Test that Clojure mode works as expected
+
+I have added Paredit to the Experimental Code section, but I'm
+mentioning that fact here as it is 'bigged up' in the 'Clojure for the
+Brave and the True' book.
+
 *** C/C++ Mode.
 *** Python Mode.
 ** Experimental Code.
 
 Code here is for testing before moving into other locations.
+
+*** Paredit.
+
+This is 'bigged up' in 'Clojure for the Brave and the True', so I am
+adding it for experimental use.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package paredit			; install paredit
+    :ensure t
+    :config (add-hook 'prog-mode-hook 'paredit-mode)
+    :config (add-hook 'cider-repl-mode-hook #'paredit-mode)
+    :config (add-hook 'LaTeX-mode-hook 'paredit-mode)
+    :config (add-hook 'html-mode-hook 'paredit-mode))
+#+END_SRC
+
+**** TODO Investigate how paredit is used.
 
 ** Stuff To Investigate.
