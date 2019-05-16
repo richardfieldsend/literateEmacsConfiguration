@@ -1,5 +1,5 @@
 * Literate Paradigm Configuration File for Emacs - May 2019.
-#+Time-stamp: <2019-05-11 21:59:26 rf343>
+#+Time-stamp: <2019-05-17 00:54:51 rf343>
 
 ** Introduction.
 
@@ -795,6 +795,58 @@ journal option to try.
 
 **** TODO information about the org-journal mode.
 **** TODO change the target folder for the journal.
+
+*** Text Lint - On The Fly Text Checking.
+When writing text it is easy to throw words into the mix which are
+entirely unnecessary.  They don't add anything to the readability of
+the text, and in some cases they might be considered problematic.
+
+I originally found out about this functionality because of a post on
+Reddit, but i like it.  I would like to use it and then try and hone
+my writing so that I don't get picked up on stuff.
+
+The original page is here:
+
+https://www.macs.hw.ac.uk/~rs46/posts/2018-12-29-textlint-flycheck.html
+
+#+BEGIN_SRC emacs-lisp
+  (use-package flycheck
+    :ensure t
+    :config (flycheck-define-checker textlint "A linter for textlint."
+				   :command ("npx" "textlint"
+					   "--config" "~/.emacs.d/.textlintrc"
+					   "--format" "unix"
+					   "--rule" "write-good"
+					   "--rule" "no-start-duplicated-conjunction"
+					   "--rule" "max-comma"
+					   "--rule" "terminology"
+					   "--rule" "period-in-list-item"
+					   "--rule" "abbr-within-parentheses"
+					   "--rule" "alex"
+					   "--rule" "common-misspellings"
+					   "--rule" "en-max-word-count"
+					   "--rule" "diacritics"
+					   "--rule" "stop-words"
+					   "--plugin"
+					   (eval
+					    (if (string="tex" (file-name-extension buffer-file-name))
+						"latex"
+					      "@textlint/text"))
+					   source-inplace)
+				   :error-patterns
+				   ((warning line-start (file-name) ":" line ":" column ": "
+					   (message (one-or-more not-newline)
+						  (zero-or-more "\n" (any " ") (one-or-more not-newline)))
+					 line-end))
+				   :modes (text-mode latex-mode org-mode-markdown-mode))
+				   :config (add-to-list 'flycheck-checkers 'textlint)
+				   :config (add-hook 'text-mode-hook 'flycheck-mode)
+				   :config (add-hook 'prog-mode-hook 'flycheck-mode)
+				   :config (add-hook 'LaTeX-mode-hook 'flycheck-mode)
+				   :config (add-hook 'latex-mode-hook 'flycheck-mode)
+				   :config (add-hook 'org-mode-hook 'flycheck-mode)
+				   :config (setq flycheck-textlint-config "~/.config/textlint/textlintrc.json"))
+#+END_SRC
 
 ** Mark Up Editing.
 
