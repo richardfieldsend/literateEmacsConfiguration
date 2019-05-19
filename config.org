@@ -1,5 +1,5 @@
 * Literate Paradigm Configuration File for Emacs - May 2019.
-#+Time-stamp: <2019-05-17 00:54:51 rf343>
+#+Time-stamp: <2019-05-19 19:50:04 rf343>
 
 ** Introduction.
 
@@ -809,6 +809,11 @@ The original page is here:
 
 https://www.macs.hw.ac.uk/~rs46/posts/2018-12-29-textlint-flycheck.html
 
+I have modified the configuration in the original post to provide
+support when using a number of different modes. This needs testing. I
+have successfully used it in Markdown mode and LaTeX mode, but I'm not
+sure yet if it works in Org mode etc.
+
 #+BEGIN_SRC emacs-lisp
   (use-package flycheck
     :ensure t
@@ -846,6 +851,7 @@ https://www.macs.hw.ac.uk/~rs46/posts/2018-12-29-textlint-flycheck.html
 				   :config (add-hook 'latex-mode-hook 'flycheck-mode)
 				   :config (add-hook 'org-mode-hook 'flycheck-mode)
 				   :config (setq flycheck-textlint-config "~/.config/textlint/textlintrc.json"))
+
 #+END_SRC
 
 ** Mark Up Editing.
